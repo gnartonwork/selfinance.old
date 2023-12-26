@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<header>
+    <h1 class="title">Selfinance</h1>        
+    <img id="logo" src="{{ url_for('static', filename='Icon.png') }}"/>
+</header>
+<div class="container6">
+    <h2>Manage Finance</h2>
+
+    {% if message %}
+        <div class="alert alert-error">
+            {{ message }}
+        </div>
+    {% endif %}
+
+    <form method="POST">
+        <label for="income">Income:</label>
+        <input type="number" name="income" required>
+
+        <label for="interest">Interest:</label>
+        <input type="number" name="interest" required>
+
+        <label for="loss">Loss:</label>
+        <input type="number" name="loss" required>
+
+        <label for="loaner">Loaner:</label>
+        <input type="number" name="loaner" required>
+
+        <label for="transaction_date">Transaction Date:</label>
+        <input type="date" name="transaction_date" required>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    {% if net_profit is not none %}
+        <h3 class="Result">Net Profit: ${{ net_profit }}</h3>
+        {% if net_profit < 0 %}
+            <div class="alert alert-error">
+                Warning: Net Profit is negative!
+            </div>
+        {% endif %}
+    {% endif %}
+</div>
+{% endblock %}

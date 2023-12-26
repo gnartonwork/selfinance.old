@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <h2>Hello, {{ username }}!</h2>
+        
+        {% if daily_net_profits %}
+            <h3>Daily Net Profits:</h3>
+            <ul>
+                {% for profit in daily_net_profits %}
+                    <li>${{ profit }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No daily net profits for today.</p>
+        {% endif %}
+
+        <h3>Average Monthly Net Profit:</h3>
+        <p>${{ average_monthly_net_profit }}</p>
+
+        {% if message %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endif %}
+
+        <form method="post" action="{{ url_for('write_report') }}">
+            <!-- Add any additional form fields for report generation here -->
+            
+            <button type="submit">Generate Report</button>
+<header>
+    <h1 class="title">Selfinance</h1>        
+    <img id="logo" src="{{ url_for('static', filename='Icon.png') }}"/>
+</header>
+    <div class="container7">
+        <h2 class="report">Hello, {{ username }}!</h2>
+        <form method="post" action="{{ url_for('write_report') }}">
+            <!-- Add form fields for report generation here -->
+
+            <button class="report" type="submit">Generate Report</button>
+        </form>
+    </div>
+{% endblock %}
